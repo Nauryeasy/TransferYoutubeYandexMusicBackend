@@ -48,6 +48,14 @@ def get_info(url: str) -> bytes:
     return bytes_of_video
 
 
+def get_name(url: str) -> str:
+    r = str(requests.get(url).text)
+    first_index = r.find('<title>')
+    second_index = r.find('- YouTube', first_index+7)
+    filename = r[first_index + 7: second_index]
+    return filename
+
+
 def send_to_yandex(bytes_of_video: bytes, post_target: str) -> str:
     files = {'file': ("<boobs>", bytes_of_video, 'audio/mpeg')}
 

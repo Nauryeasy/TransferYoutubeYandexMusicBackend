@@ -20,5 +20,12 @@ def get_music():
     return {'result': 'OK'}
 
 
+@app.route('/name', methods=['POST'])
+def get_song_name():
+    data = request.get_json()
+    song_name = get_name(data['url_song'])
+    return {'song_name': song_name}
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4989)
